@@ -14,9 +14,9 @@ String.prototype.format = function () {
 var utils;
 (function (utils) {
     utils.url = function (call) {
-        return "{0}/{1}/{2}/".format(utils.server_url, utils.path_url, call);
+        return "{0}{1}/{2}/".format(utils.server_url, utils.path_url, call);
     };
-    utils.server_url = 'http://localhost:1337';
+    utils.server_url = 'http://localhost:1337/';
     utils.path_url = 'api';
     function can_looseChanges() {
         var d = Q.defer();
@@ -56,4 +56,7 @@ var utils;
     }
     utils.scrollToObj = scrollToObj;
 })(utils || (utils = {}));
+if (!ENV || !ENV.environment) {
+    utils.server_url = 'https://umarket.herokuapp.com/';
+}
 //# sourceMappingURL=C:/umarket/umarket.web.ui/js/library/utils.js.map
