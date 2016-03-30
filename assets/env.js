@@ -1,4 +1,4 @@
 ﻿
 var ENV = {
-    environment: 'development'
+    
 }
