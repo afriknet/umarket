@@ -32,10 +32,6 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  '/': {
-    view: 'homepage'
-  }
-
   /***************************************************************************
   *                                                                          *
   * Custom routes here...                                                    *
@@ -46,4 +42,8 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
+    'post /api/:resource/:operation': 'DispatchController.dispatch',
+    'get /api/:resource/:operation': 'DispatchController.dispatch',
+    'get /api/config/data': 'DispatchController.dispatch',
+  
 };
