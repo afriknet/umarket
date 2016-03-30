@@ -22,6 +22,7 @@ define(["require", "exports", '../ts_library/ts_lib', '../jx/jx_brg'], function 
             var _this = this;
             $('#page-wrapper').empty();
             $('#page-wrapper').load('/master_page.html', function () {
+                utils.adjust();
                 _this.load_view();
             });
         };
