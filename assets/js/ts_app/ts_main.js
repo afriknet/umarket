@@ -3,12 +3,14 @@
 /// <reference path="../ts_library/ts_lib.ts" />
 /// <reference path="../ts_admin/ts_admin.ts" />
 /// <reference path="../ts_admin/ts_product_explorer.ts" />
+/// <reference path="../ts_sign_in.ts" />
+/// <reference path="../ts_admin/ts_admin_explorer.ts" />
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-define(["require", "exports", '../ts_library/ts_lib', '../ts_admin/ts_admin', '../ts_admin/ts_product_explorer', '../ts_library/ts_menus'], function (require, exports, lib, admin, products, menus) {
+define(["require", "exports", '../ts_library/ts_lib', '../ts_admin/ts_product_explorer', '../ts_library/ts_menus', '../ts_sign_in', '../ts_admin/ts_admin_explorer'], function (require, exports, lib, products, menus, sign, Admin) {
     var MainView = (function (_super) {
         __extends(MainView, _super);
         function MainView() {
@@ -47,7 +49,7 @@ define(["require", "exports", '../ts_library/ts_lib', '../ts_admin/ts_admin', '.
                 },
                 {
                     url: '/admin', mount: function (ops) {
-                        (new admin.AdminView()).render();
+                        (new Admin.AdminExplorerView()).render();
                     }
                 },
                 {
@@ -83,6 +85,11 @@ define(["require", "exports", '../ts_library/ts_lib', '../ts_admin/ts_admin', '.
                         (new products.ProductsExplorer({
                             catname: null
                         })).render();
+                    }
+                },
+                {
+                    url: '/signin', mount: function (ops) {
+                        (new sign.SignInView(ops)).render();
                     }
                 },
                 {

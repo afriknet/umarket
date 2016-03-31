@@ -22,6 +22,8 @@ define(["require", "exports", '../ts_library/ts_lib', '../jx/jx_brg'], function 
             var _this = this;
             $('#page-wrapper').empty();
             $('#page-wrapper').load('/master_page.html', function () {
+                $('.page-title').html('Articles');
+                $('.page-descr').empty();
                 utils.adjust();
                 _this.load_view();
             });
@@ -155,11 +157,11 @@ define(["require", "exports", '../ts_library/ts_lib', '../jx/jx_brg'], function 
             });
             var __min = _.min(prices);
             var __max = _.max(prices);
+            __min = this.fix_min_max(Math.floor(__min));
+            __max = this.fix_min_max(Math.ceil(__max));
             if (__min === __max) {
                 __max += __min;
             }
-            __min = this.fix_min_max(Math.floor(__min));
-            __max = this.fix_min_max(Math.ceil(__max));
             $('#price-slider-range').slider({
                 range: true,
                 min: __min,
@@ -273,6 +275,7 @@ define(["require", "exports", '../ts_library/ts_lib', '../jx/jx_brg'], function 
             return images;
         };
         ProductItem.prototype.onRender = function () {
+            var _this = this;
             _super.prototype.onRender.call(this);
             var html = $('#ts-product-item-1').html();
             var tmplate = _.template(html)();
@@ -297,6 +300,9 @@ define(["require", "exports", '../ts_library/ts_lib', '../jx/jx_brg'], function 
             }
             this.item['currPrice'] = lib.Extensions.CurrenyObservable(this.item['itemprice']);
             this.html_bind(this.item, 'itemname', this.$el.find('.product-name'));
+            this.$el.find('.btn-quickview').click(function () {
+                _this.zoom_product();
+            });
         };
         ProductItem.prototype.html_bind = function (item, property, root) {
             root.empty();
@@ -312,9 +318,106 @@ define(["require", "exports", '../ts_library/ts_lib', '../jx/jx_brg'], function 
             }
             return ok;
         };
+        ProductItem.prototype.zoom_product = function () {
+            var $modal_handler = $('#modal-handler');
+            if ($modal_handler.length == 0) {
+                $modal_handler = $('<div id="modal-handler"></div>').appendTo($('body'));
+            }
+            var d = Q.defer();
+            (new ZoomProductView({
+                el: $modal_handler,
+                itemid: this.item['id'](),
+                owner: this
+            })).render();
+            return d.promise;
+        };
         return ProductItem;
     })(lib.Views.BaseView);
     exports.ProductItem = ProductItem;
+    var ZoomProductView = (function (_super) {
+        __extends(ZoomProductView, _super);
+        function ZoomProductView(options) {
+            _.extend(this, {
+                template: '#ts-product-zoom'
+            });
+            _super.call(this, options);
+        }
+        Object.defineProperty(ZoomProductView.prototype, "ds", {
+            get: function () {
+                if (!this.__ds) {
+                    this.__ds = new lib.Data.Datasource({
+                        serviceName: 'item-srv',
+                        askMetadata: true
+                    });
+                }
+                return this.__ds;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(ZoomProductView.prototype, "modal", {
+            get: function () {
+                return this.$el.find('.modal');
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(ZoomProductView.prototype, "item", {
+            get: function () {
+                return this.ds.dataManager.getEntities('item')[0];
+            },
+            enumerable: true,
+            configurable: true
+        });
+        ZoomProductView.prototype.get_query = function () {
+            var qry = new breeze.EntityQuery('item').where('id', '==', this.options.itemid);
+            return qry.expand(['item_imgs', 'item_details']);
+        };
+        ZoomProductView.prototype.onRender = function () {
+            var _this = this;
+            _super.prototype.onRender.call(this);
+            this.ds.fetch(this.get_query()).then(function (data) {
+                _this.mount_images();
+                _this.show_modal();
+            });
+        };
+        ZoomProductView.prototype.mount_images = function () {
+            var root = this.$el.find('#product-carousel-modal');
+            root.empty();
+            _.each(this.item['item_imgs'](), function (img) {
+                //<div class="item"><img src="/images/products/product-1.jpg" class="img-responsive" alt=""></div>
+                var path = _.result(img, 'filename');
+                var img_view = $('<div class="item"></div>').appendTo(root);
+                img_view.html(path);
+                $(img).attr('href', '#');
+            });
+        };
+        ZoomProductView.prototype.show_modal = function () {
+            var _this = this;
+            this.modal.on('shown.bs.modal', function (e) {
+                _this.$el.find(".product-carousel-wrapper").removeClass('hidden');
+                $("#product-carousel-modal").owlCarousel({
+                    items: 1,
+                    animateOut: 'fadeOut',
+                    animateIn: 'fadeIn',
+                });
+            });
+            this.modal.modal('show');
+        };
+        ZoomProductView.prototype.onSave = function () {
+            return Q.resolve({
+                result: lib.Constants.DialogResult.Ok,
+                data: true
+            });
+        };
+        ZoomProductView.prototype.onCancel = function () {
+            return Q.reject({
+                result: lib.Constants.DialogResult.Cancel,
+                data: null
+            });
+        };
+        return ZoomProductView;
+    })(lib.Views.BaseView);
     var specUi = (function (_super) {
         __extends(specUi, _super);
         function specUi(options) {

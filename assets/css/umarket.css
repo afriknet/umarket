@@ -20,3 +20,54 @@
 .wizard ul > li, .tabcontrol .lookup ul > li span.text {
     font-size:14px
 }
+
+
+span.error {
+    color:#cc5965
+}
+
+.form-control.error-val{
+    border:1px solid #cc5965
+}
+
+.form-control.validation-error{
+    border:1px solid #cc5965;
+    color:#cc5965
+}
+
+span.validation-error{
+    color:#cc5965
+}
+
+form .form-control.error {
+        border: 1px solid #cc5965;
+        color: #cc5965;
+}
+
+form input.error::-webkit-input-placeholder
+{
+    color: #cc5965;
+}
+
+form input.error::-moz-placeholder {
+    color: #cc5965;
+}
+
+form input.error:-moz-placeholder {
+    color: #cc5965;
+}
+
+form input.error:-ms-input-placeholder {
+    color: #cc5965;
+}
+
+.wizard > .content > .body select.error
+{
+    background: rgb(251, 227, 228);
+    border: 1px solid #fbc2c4;
+    color: #8a1f11;
+}
+
+label.error{
+    color: red;
+}

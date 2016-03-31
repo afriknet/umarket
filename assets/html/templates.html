@@ -1323,7 +1323,7 @@
                     <div class="product-mask"></div>
                     <a href="/single-product" class="product-permalink"></a>
                     <div class="product-quickview">
-                        <a class="btn btn-quickview" data-toggle="modal" data-target="#product-quickview">Quick View</a>
+                        <a class="btn btn-quickview">Quick View</a>
                     </div>
                 </div>
             </div>
@@ -1356,7 +1356,6 @@
         </div>
     </article>
     <!-- PRODUCT - END -->
-
 
 </script>
 
@@ -1539,5 +1538,293 @@
             </ul>
         </div>
     </div>
+
+</script>
+
+
+
+<script id="ts-product-zoom" type="text/template">
+
+    <div class="modal fade modal-quickview" id="product-quickview" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fa fa-times"></i></button>
+                </div>
+                <div class="modal-body">
+                    <article class="product-item product-single">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="product-carousel-wrapper hidden">
+                                    <div id="product-carousel-modal">
+                                        <div class="item"><img src="/images/products/product-1.jpg" class="img-responsive" alt=""></div>
+                                        <div class="item"><img src="/images/products/product-2.jpg" class="img-responsive" alt=""></div>
+                                        <div class="item"><img src="/images/products/product-3.jpg" class="img-responsive" alt=""></div>
+                                        <div class="item"><img src="/images/products/product-4.jpg" class="img-responsive" alt=""></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-8">
+                                <h3>Fusce Aliquam</h3>
+                                <div class="product-labels">
+                                    <span class="label label-info">new</span>
+                                    <span class="label label-danger">sale</span>
+                                </div>
+                                <div class="product-rating">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star-o"></i>
+                                    <i class="fa fa-star-o"></i>
+                                </div>
+                                <span class="price">
+                                    <del><span class="amount">$36.00</span></del>
+                                    <ins><span class="amount">$30.00</span></ins>
+                                </span>
+                                <ul class="list-unstyled product-info">
+                                    <li><span>ID</span>U-187423</li>
+                                    <li><span>Availability</span>In Stock</li>
+                                    <li><span>Brand</span>Esprit</li>
+                                    <li><span>Tags</span>Dress, Black, Women</li>
+                                </ul>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut feugiat mauris eget magna egestas porta. Curabitur sagittis sagittis neque rutrum congue. Donec lobortis dui sagittis, ultrices nunc ornare, ultricies elit. Curabitur tristique felis pulvinar nibh porta. </p>
+                                <div class="product-form clearfix">
+                                    <div class="row row-no-padding">
+
+                                        <div class="col-lg-3 col-md-4 col-sm-6">
+                                            <div class="product-quantity clearfix">
+                                                <a class="btn btn-default" id="modal-qty-minus">-</a>
+                                                <input type="text" class="form-control" id="modal-qty" value="1">
+                                                <a class="btn btn-default" id="modal-qty-plus">+</a>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-3 col-md-4 col-sm-6">
+                                            <div class="product-size">
+                                                <form class="form-inline">
+                                                    <div class="form-group">
+                                                        <label>Size:</label>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <select class="form-control">
+                                                            <option>XS</option>
+                                                            <option>S</option>
+                                                            <option selected="selected">M</option>
+                                                            <option>L</option>
+                                                            <option>XL</option>
+                                                            <option>XXL</option>
+                                                        </select>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-3 col-md-4 col-sm-6">
+                                            <div class="product-color">
+                                                <form class="form-inline">
+                                                    <div class="form-group">
+                                                        <label>Color:</label>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <select class="form-control">
+                                                            <option selected="selected">Black</option>
+                                                            <option>White</option>
+                                                            <option>Red</option>
+                                                            <option>Yellow</option>
+                                                        </select>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-3 col-md-12 col-sm-6">
+                                            <a href="" class="btn btn-primary add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <ul class="list-inline product-links">
+                                    <li><a href="#"><i class="fa fa-heart"></i>Add to wishlist</a></li>
+                                    <li><a href="#"><i class="fa fa-exchange"></i>Compare</a></li>
+                                    <li><a href="#"><i class="fa fa-envelope"></i>Email to friend</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</script>
+
+
+
+<script id="ts-signin" type="text/template">
+    <section class="content account">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
+                    <div class="login-form-wrapper">
+                        <form>
+                            <h3>Connectez-vous</h3>
+                            <div class="form-group">
+                                <label>Email<span class="required">*</span></label>
+                                <input type="email" required name="email" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label>Mot de passe<span class="required">*</span></label>
+                                <input type="password" required name="password" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <div class="checkbox">
+                                    <input type="checkbox" id="signin-remember">
+                                    <label for="signin-remember">Rester connecte</label>
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-primary btn-lg btn-block btn-signin">Suivant</button>
+                        </form>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <a href="" class="btn btn-brand btn-facebook"><i class="fa fa-facebook"></i>Se connecter avec Facebook</a>
+                            </div>
+                            <div class="col-xs-6">
+                                <a href="" class="btn btn-brand btn-google-plus"><i class="fa fa-google-plus"></i>Se connecter avec Google Plus</a>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="form-text">J'ai <a href="lost-password.html">oublie mon mot de passe</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+</script>
+
+
+
+<script id="ts-admin-explorer" type="text/template">
+
+    <div class="tabs">
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active">
+                <a href="#tabs-articles" role="tab" data-toggle="tab" aria-controls="tabs-articles" aria-expanded="false">
+                    <i class="fa fa-shopping-bag"></i> <span style="margin-left:5px">Articles</span>
+                </a>
+            </li>
+            <li role="presentation" class="">
+                <a href="#tabs-users" role="tab" data-toggle="tab" aria-controls="tabs-users" aria-expanded="true">
+                    <i class="fa fa-user"></i><span style="margin-left:5px">Utilisateurs</span>
+                </a>
+            </li>
+            <li role="presentation" class="">
+                <a href="#tabs-settings" role="tab" data-toggle="tab" aria-controls="tabs-settings" aria-expanded="false">
+                    <i class="fa fa-cog"></i><span style="margin-left:5px">Reglages</span>
+                </a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active in" id="tabs-articles">
+                <hr />
+                <div id="tabs-articles-list">
+
+                </div>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="tabs-users">
+                <p>Vivamus vulputate non lectus et efficitur. Suspendisse pulvinar neque eu nibh dapibus, nec porta mauris commodo. Integer pellentesque elit a tellus pellentesque, et varius erat lacinia. Nam imperdiet tellus sed pellentesque semper.</p>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="tabs-settings">
+                <p>Pellentesque euismod mattis turpis, et blandit massa faucibus a. Nulla interdum rutrum semper. Morbi egestas sollicitudin orci eget feugiat. In cursus, elit non interdum viverra, arcu dui tristique est, vel facilisis leo libero quis velit.</p>
+            </div>
+        </div>
+    </div>
+    
+
+</script>
+
+
+
+<script id="ts-usr-account" type="text/template">
+
+    <section class="content account">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3">
+                    <aside class="sidebar">
+
+                        <!-- WIDGET:CATEGORIES - START -->
+                        <div class="widget widget-navigation">
+                            <ul class="nav nav-pills nav-stacked">
+                                <li class="active"><a href="my-account.html">Account Dashboard</a></li>
+                                <li><a href="profile.html">Personal Infromation</a></li>
+                                <li><a href="address.html">My Address</a></li>
+                                <li><a href="orders.html">My Orders</a></li>
+                                <li><a href="warranty-claims.html">Warranty Claims</a></li>
+                                <li><a href="wishlist.html">Wishlist</a></li>
+                                <li><a href="products.html">Back to Shop</a></li>
+                            </ul>
+                        </div>
+                        <!-- WIDGET:CATEGORIES - END -->
+
+                    </aside>
+                </div>
+                <div class="col-sm-9">
+                    <article class="account-content">
+                        <div class="alert alert-warning alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><i class="fa fa-times"></i></button>
+                            <strong>Warning!</strong> You have one unpaid order.
+                        </div>
+                        <h3>Welcome <span>John Doe</span></h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut feugiat mauris eget magna egestas porta. Curabitur sagittis sagittis neque rutrum congue. Donec lobortis dui sagittis, ultrices nunc ornare, ultricies elit.</p>
+                        <div class="icon-nav row">
+                            <div class="col-xs-6 col-md-3"><a href="address.html"><i class="fa fa-map-marker"></i> My Address</a></div>
+                            <div class="col-xs-6 col-md-3"><a href="orders.html"><i class="fa fa-tasks"></i> My Orders</a></div>
+                            <div class="col-xs-6 col-md-3"><a href="wishlist.html"><i class="fa fa-heart"></i> Wishlist</a></div>
+                            <div class="col-xs-6 col-md-3"><a href="profile.html"><i class="fa fa-user"></i> Profile</a></div>
+                            <div class="col-xs-6"><a href="add-address.html"><i class="fa fa-plus-circle"></i> New Address</a></div>
+                            <div class="col-xs-6"><a href="add-claim.html"><i class="fa fa-plus-circle"></i> New Warranty Claim</a></div>
+                        </div>
+                        <h4>Unpaid Orders</h4>
+                        <div class="table-responsive border">
+                            <table class="table table-bordered">
+                                <tr>
+                                    <th class="col-xs-3">Order ID</th>
+                                    <th class="col-xs-3">Date</th>
+                                    <th class="col-sm-2 hidden-xs">Items</th>
+                                    <th class="col-xs-3">Total Price</th>
+                                    <th class="col-xs-1"></th>
+                                </tr>
+                                <tr>
+                                    <td><a href="single-order.html">#124321</a></td>
+                                    <td>12th July 2015</td>
+                                    <td class="hidden-xs">3</td>
+                                    <td>$265</td>
+                                    <td><a href="single-order.html" class="btn btn-primary btn-sm">Pay</a></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <h4>Pending Warranty Claims</h4>
+                        <div class="table-responsive border">
+                            <table class="table table-bordered">
+                                <tr>
+                                    <th class="col-xs-2">Claim ID</th>
+                                    <th class="col-xs-2">Date</th>
+                                    <th class="col-xs-2">Product Code</th>
+                                    <th class="col-xs-5">Product Name</th>
+                                    <th class="col-xs-1"></th>
+                                </tr>
+                                <tr>
+                                    <td><a href="single-order.html">#5712</a></td>
+                                    <td>12th July 2015</td>
+                                    <td>U-187423</td>
+                                    <td>Fusce Aliquam <span class="grey">(M, Black, Esprit)</span></td>
+                                    <td><a href="single-claim.html" class="btn btn-primary btn-sm">View</a></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </section>
 
 </script>
