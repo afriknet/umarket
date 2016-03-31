@@ -5,13 +5,12 @@
 /// <reference path="lib/store.ts" />
 
 var root = require('root-path');
+import store = require('./lib/store');
 import path = require('path')
 var fs = require('fs');
 import _ = require('lodash');
 import api = require('./lib/serviceapi');
 import ctx = require('./appcontext');
-import store = require('./lib/store');
-
 
 var skip_files: string[] = ["DispatchController.js"];
 

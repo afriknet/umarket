@@ -1,9 +1,9 @@
 ﻿/// <reference path="../../typings/tsd.d.ts" />
 
 var root = require('root-path');
-var breeze_sequel = require('breeze-sequelize');
-import breeze = require('breeze-client');
 var metadata = require(root('/server/db/meta'));
+var breeze_sequel = require(root('/server/breeze_sequel/main'));
+import breeze = require('breeze-client');
 
 import _ = require('lodash');
 
