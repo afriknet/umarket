@@ -37,7 +37,7 @@ module.exports.cors = {
   *                                                                          *
   ***************************************************************************/
 
-  allRoutes: true,
+   allRoutes: true,
 
   /***************************************************************************
   *                                                                          *
@@ -55,7 +55,7 @@ module.exports.cors = {
   *                                                                          *
   ***************************************************************************/
 
-  credentials: true,
+   credentials: true,
 
   /***************************************************************************
   *                                                                          *
@@ -64,7 +64,7 @@ module.exports.cors = {
   *                                                                          *
   ***************************************************************************/
 
-  methods: 'GET, POST, PUT, DELETE, OPTIONS, HEAD',
+   methods: 'GET, POST, PUT, DELETE, OPTIONS, HEAD',
 
   /***************************************************************************
   *                                                                          *
@@ -73,6 +73,6 @@ module.exports.cors = {
   *                                                                          *
   ***************************************************************************/
 
-  headers: 'Content-Type, Authorization, X-Requested-With, Cache-Control, Accept, Origin, X-Session-ID'
+   headers: 'Content-Type, Authorization, X-Requested-With, Cache-Control, Accept, Origin, X-Session-ID'
 
 };

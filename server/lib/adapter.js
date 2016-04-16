@@ -1,7 +1,8 @@
 /// <reference path="../../typings/q/Q.d.ts" />
 /// <reference path="../../typings/tsd.d.ts" />
+var root = require('root-path');
 (function (factory) {
-    var breezeSequelize = require('breeze-sequelize');
+    var breezeSequelize = require(root('/server/breeze_sequel/main'));
     module.exports = factory(breezeSequelize.breeze);
 }(function (breeze) {
     "use strict";

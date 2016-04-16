@@ -21,9 +21,9 @@ var ServiceApi = (function () {
         this.context = context;
     }
     ServiceApi.prototype.get_ServiceName = function () {
-        return null;
+        return this.get_modelName();
     };
-    ServiceApi.prototype.get_masterEntityName = function () {
+    ServiceApi.prototype.get_modelName = function () {
         return null;
     };
     Object.defineProperty(ServiceApi.prototype, "entityManager", {
@@ -46,7 +46,7 @@ var ServiceApi = (function () {
         var _this = this;
         var that = this;
         data.forEach(function (e) {
-            _this.entityManager.createEntity(_this.get_masterEntityName(), e, breeze.EntityState.Unchanged, breeze.MergeStrategy.OverwriteChanges);
+            _this.entityManager.createEntity(_this.get_modelName(), e, breeze.EntityState.Unchanged, breeze.MergeStrategy.OverwriteChanges);
         });
     };
     ServiceApi.prototype.__execQuery = function (query) {
@@ -68,21 +68,24 @@ var ServiceApi = (function () {
         });
         return d.promise;
     };
-    ServiceApi.prototype.exec_sql = function (sql) {
+    ServiceApi.prototype.internal_exec_sql = function (sql) {
         var d = Q.defer();
         this.context.conn.sequelize.query(sql, { type: __sequel.QueryTypes.SELECT }).then(function (list) {
             d.resolve(list);
         });
         return d.promise;
     };
+    ServiceApi.prototype.exec_sql = function (input) {
+        return this.internal_exec_sql(input.sql);
+    };
     ServiceApi.prototype.exec_sql_incr = function (input) {
         var _this = this;
         var d = Q.defer();
         var sql_count = utils.format("SELECT COUNT(*) RECORDCOUNT FROM ({0}) B", input.sql);
-        this.exec_sql(sql_count).then(function (list) {
+        this.internal_exec_sql(sql_count).then(function (list) {
             var __total = list[0]['RECORDCOUNT'];
             var _sql = input.sql + " " + input.order_by_offset;
-            _this.exec_sql(_sql).then(function (list2) {
+            _this.internal_exec_sql(_sql).then(function (list2) {
                 list2.forEach(function (row) {
                     row = _.extend(row, { DT_RowId: _.result(row, 'ID') });
                 });
@@ -112,11 +115,14 @@ var ServiceApi = (function () {
     };
     ServiceApi.prototype.savechanges = function (data) {
         this.entityManager.importEntities(data, { mergeStrategy: breeze.MergeStrategy.OverwriteChanges });
+        return this.do_savechanges();
+    };
+    ServiceApi.prototype.do_savechanges = function () {
         var dataservice = br_sequel.breeze.config.getAdapterInstance('dataService');
         var savecontext = {
             entityManager: this.entityManager,
             dataService: dataservice,
-            resourceName: this.get_masterEntityName()
+            resourceName: this.get_modelName()
         };
         var bundle = { entities: this.entityManager.getEntities(), saveOptions: {} };
         var saveBundle = dataservice.saveChanges(savecontext, bundle);
