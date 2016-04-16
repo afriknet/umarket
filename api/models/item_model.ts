@@ -1,7 +1,11 @@
-/// <reference path="../../server/lib/store.ts" />
-var Store = require('../../server/lib/store');
-var breeze = require('breeze-client');
+﻿/// <reference path="../../server/lib/store.ts" />
+
+
+import Store = require('../../server/lib/store');
+import breeze = require('breeze-client');
+
 module.exports = function () {
+
     Store.add_to_Store({
         defaultResourceName: 'item',
         dataProperties: {
@@ -41,8 +45,10 @@ module.exports = function () {
                 associationName: "assoc_item_specsdims",
                 isScalar: false
             }
-        }
+        }        
     });
+
+
     Store.add_to_Store({
         defaultResourceName: 'item_img',
         dataProperties: {
@@ -64,9 +70,11 @@ module.exports = function () {
             }
         }
     });
+
+
     // item detail
-    Store.add_to_Store({
-        defaultResourceName: 'item_detail',
+    Store.add_to_Store({        
+        defaultResourceName: 'item_detail',                
         dataProperties: {
             id: { dataType: breeze.DataType.String, isPartOfKey: true },
             itemID: { dataType: breeze.DataType.String, },
@@ -82,13 +90,15 @@ module.exports = function () {
             }
         }
     });
+
+
     // item_cat
     Store.add_to_Store({
         defaultResourceName: 'item_itemcat',
         dataProperties: {
             id: { dataType: breeze.DataType.String, isPartOfKey: true },
             itemid: { dataType: breeze.DataType.String, },
-            itemcatid: { dataType: breeze.DataType.String },
+            itemcatid: { dataType: breeze.DataType.String },            
         },
         navigationProperties: {
             item: {
@@ -98,6 +108,8 @@ module.exports = function () {
             }
         }
     });
+
+
     //item_specsdims
     Store.add_to_Store({
         defaultResourceName: 'item_specsdims',
@@ -114,6 +126,8 @@ module.exports = function () {
             }
         }
     });
+
+
     // item_partner
     Store.add_to_Store({
         defaultResourceName: 'item_partner',
@@ -130,6 +144,9 @@ module.exports = function () {
             }
         }
     });
+
+
+
     /*
     // item_partner
         this.add_dataStore({
@@ -152,5 +169,5 @@ module.exports = function () {
         });
 
     */
-};
-//# sourceMappingURL=item_model.js.map
+
+}

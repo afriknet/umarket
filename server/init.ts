@@ -11,12 +11,14 @@ var fs = require('fs');
 import _ = require('lodash');
 import api = require('./lib/serviceapi');
 import ctx = require('./appcontext');
+import Q = require('q');
+
 
 var skip_files: string[] = ["DispatchController.js"];
 
 
 function load_models(context: ctx.AppContext) {
-
+    
     var files: string[] = fs.readdirSync(root('/api/models'));
 
     _.each(files.sort(), fn => {
@@ -27,7 +29,10 @@ function load_models(context: ctx.AppContext) {
 
             var model = require(root('/api/models/' + fn));
 
-            model();
+            if (_.isFunction(model)) {
+                model();
+            }
+            
         }
     });
     
@@ -70,6 +75,40 @@ function init_datastore(ctx: ctx.AppContext) {
 }
 
 
+
+function init_demo_categories(ctx: ctx.AppContext) {
+
+    var srv = ctx.get_ServiceApi('itemcats');
+
+    return srv['init_demo_data']();
+}
+
+
+
+
+function init_demo_specs(ctx: ctx.AppContext) {
+
+    var srv = ctx.get_ServiceApi('specsdim');
+
+    return srv['init_demo_data']();
+
+}
+
+
+
+function init_demo_data(ctx: ctx.AppContext) {
+
+    Q.all([
+        init_demo_categories(ctx),
+        init_demo_specs(ctx)
+    ]).then(values => {
+
+    });
+
+}
+
+
+
 export function initialize_application() {
 
     var context = new ctx.AppContext();
@@ -79,4 +118,6 @@ export function initialize_application() {
     load_apis(context);
 
     init_datastore(context);   
+    
+    init_demo_data(context);
 }

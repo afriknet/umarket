@@ -17,9 +17,9 @@ var ItemSrv = (function (_super) {
         _super.apply(this, arguments);
     }
     ItemSrv.prototype.get_ServiceName = function () {
-        return 'item-srv';
+        return 'item';
     };
-    ItemSrv.prototype.get_masterEntityName = function () {
+    ItemSrv.prototype.get_modelName = function () {
         return 'item';
     };
     ItemSrv.prototype.request_products = function (url_params) {
@@ -44,7 +44,7 @@ var ItemSrv = (function (_super) {
             sql += ' where ' + where;
         }
         var sql_count = ' select count(*) total from ( ' + sql + ') as tbl_count';
-        return this.exec_sql(sql_count).then(function (list1) {
+        return this.internal_exec_sql(sql_count).then(function (list1) {
             var _total = list1[0].total;
             if (params.limit) {
                 sql += ' LIMIT ' + params.limit;
@@ -52,7 +52,7 @@ var ItemSrv = (function (_super) {
             if (params.offset) {
                 sql += ' OFFSET ' + params.offset;
             }
-            return _this.exec_sql(sql).then(function (list) {
+            return _this.internal_exec_sql(sql).then(function (list) {
                 var qry = breeze.EntityQuery.from('item').where(utils.where_in('id', _.map(list, function (m) { return m.id; })))
                     .expand(['item_imgs', 'item_details', 'item_partners']);
                 return _this.fetch(qry).then(function (rst) {
@@ -70,7 +70,7 @@ var ItemSrv = (function (_super) {
 })(api.ServiceApi);
 module.exports = function (ctx) {
     ctx.register_api({
-        serviceName: 'item-srv',
+        serviceName: 'item',
         getInstance: function (ctx) {
             return new ItemSrv(ctx);
         }

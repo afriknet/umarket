@@ -1,10 +1,12 @@
 {
-  "name": "umarket",
+  "name": "app.server",
   "private": true,
   "version": "0.0.0",
   "description": "a Sails application",
   "keywords": [],
   "dependencies": {
+    "bluebird": "^3.3.4",
+    "breeze-client": "^1.5.5",
     "breeze-mongoose": "^1.1.5",
     "breeze-sequelize": "^0.0.18",
     "breeze-serverside": "^0.0.1",
@@ -24,6 +26,7 @@
     "grunt-contrib-watch": "0.5.3",
     "grunt-sails-linker": "~0.10.1",
     "grunt-sync": "0.2.4",
+    "guid": "0.0.12",
     "include-all": "~0.1.6",
     "mysql": "^2.10.2",
     "q": "^1.4.1",
@@ -43,7 +46,7 @@
   "main": "app.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/anonymous node/sails user/umarket.git"
+    "url": "git://github.com/anonymous node/sails user/app.server.git"
   },
   "author": "anonymous node/sails user",
   "license": ""

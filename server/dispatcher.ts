@@ -64,7 +64,7 @@ export function process(req: express.Request, res: express.Response, next: any) 
             FileUploader.upload_file(req, res, next);
 
         } break;
-
+            
 
         case "Metadata": {
             res.send(Store.ModelStore.exportMetadata());
